@@ -36,10 +36,13 @@ body {
 .case {
   border: 4px solid #28eea7;
   color: BLACK;
-  font-size: 2REM;
+  font-size: 4rem;
   border-radius: 5px;
   cursor: pointer;
   display: flex;
+  color: white;
+  align-items: center;
+  justify-content: center;
 
 
 }

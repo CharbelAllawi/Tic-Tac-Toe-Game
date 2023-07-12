@@ -20,14 +20,31 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('firstplayer').innerText = checkplayer1empty + " score: "
     document.getElementById('secondplayer').innerText = checkplayer2empty + " score: "
 
+
+
   }
 
 
 
 
-
   document.getElementById("btn").addEventListener('click', showboard);
-  turn = 'X'
-  gameturn()
+  var elements = document.getElementsByClassName('case');
+  state = 'X'
+
+  for (var i = 0; i < elements.length; i++) {
+    (function (index) {
+      elements[index].addEventListener('click', function () {
+        if (state == "X") {
+          elements[index].innerText = "X";
+          state = "O"
+        }
+        else if (state == "O") {
+          elements[index].innerText = "O";
+          state = "X"
+        }
+      });
+    })(i);
+  }
+
 
 });
