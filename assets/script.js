@@ -17,8 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     }
-    document.getElementById('firstplayer').innerText = checkplayer1empty + " score: "
-    document.getElementById('secondplayer').innerText = checkplayer2empty + " score: "
+    document.getElementById('firstplayer').innerText = checkplayer1empty + " score: " + player1score
+    document.getElementById('secondplayer').innerText = checkplayer2empty + " score: " + player2score
 
 
 
@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   function checkwin() {
+
     var player1 = document.forms["form1"]["player1input"].value;
     var player2 = document.forms["form1"]["player2input"].value;
     var case1 = document.getElementById("case1").innerText;
@@ -57,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
     var case7 = document.getElementById("case7").innerText;
     var case8 = document.getElementById("case8").innerText;
     var case9 = document.getElementById("case9").innerText;
-    console.log(case1)
     if (case1 == case2 && case2 == case3 && case1 != "" ||
       case4 == case5 && case5 == case6 && case4 != "" ||
       case7 == case8 && case8 == case9 && case7 != "" ||
@@ -72,10 +72,15 @@ document.addEventListener("DOMContentLoaded", function () {
       if (state == 'X') {
         alert(player1 + ' is the Winner!')
         clearboard();
+        player1score += 1
+        showboard()
+
       }
       if (state == 'O') {
-        alert(player1 + ' is the Winner!')
+        alert(player2 + ' is the Winner!')
         clearboard();
+        player2score += 1
+        showboard()
       }
 
 
@@ -88,6 +93,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   state = 'X'
+  player1score = 0
+  player2score = 0
 
   for (var i = 0; i < elements.length; i++) {
     (function (index) {
@@ -96,14 +103,16 @@ document.addEventListener("DOMContentLoaded", function () {
         if (state == "X") {
 
           elements[index].innerText = "X";
-          state = "O"
           checkwin()
+          state = "O"
+
         }
         else if (state == "O") {
 
           elements[index].innerText = "O";
-          state = "X"
           checkwin()
+          state = "X"
+
         }
       });
     })(i);
