@@ -34,6 +34,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // the below function will clear the board
   function clearboard() {
     state = 'X'
+    document.getElementById('roundwinner').innerText = "The Gamer Winner is : "
+
     case1 = document.getElementById("case1").innerText = "";
     case2 = document.getElementById("case2").innerText = "";
     case3 = document.getElementById("case3").innerText = "";
@@ -111,6 +113,8 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       if (state == 'X') {
         strikeanimation(case1, case2, case3, case4, case5, case6, case7, case8, case9);
+        document.getElementById('roundwinner').innerText = "The Gamer Winner is : " + player1
+
         setTimeout(function () {
 
           clearboard();
@@ -125,6 +129,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       if (state == 'O') {
         strikeanimation(case1, case2, case3, case4, case5, case6, case7, case8, case9);
+        document.getElementById('roundwinner').innerText = "The Gamer Winner is : " + player2
+
         setTimeout(function () {
 
           clearboard();
@@ -133,6 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           alert(player2 + " Is The Winner!")
         }, 500);
+
 
         player2score += 1
         showboard()

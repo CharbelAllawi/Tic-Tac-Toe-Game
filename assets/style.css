@@ -126,3 +126,7 @@ input[type=text] {
 .case.strike-active::after {
   transform: scaleX(1);
 }
+
+.roundwinner {
+  margin-top: 50px;
+}
