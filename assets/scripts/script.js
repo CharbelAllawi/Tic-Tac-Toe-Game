@@ -147,8 +147,16 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
     if (case1 != "" && case2 != "" && case3 != "" && case4 != "" && case5 != "" && case6 != "" && case7 != "" && case8 != "" && case9 != "") {
-      alert("Draw! No Winners ;)")
-      clearboard()
+      document.getElementById('roundwinner').innerText = "Draw!"
+
+      setTimeout(function () {
+
+        clearboard();
+      }, 2000);
+      setTimeout(function () {
+
+      }, 500);
+      showboard()
     }
   }
 
