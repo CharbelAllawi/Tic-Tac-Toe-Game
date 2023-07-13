@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // the below function will display the hidden board  
   function showboard() {
+
     var checkplayer1empty = document.forms["form1"]["player1input"].value;
     var checkplayer2empty = document.forms["form1"]["player2input"].value;
     if (checkplayer1empty == "" || checkplayer2empty == "") {
@@ -29,12 +30,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     document.getElementById('firstplayer').innerText = checkplayer1empty + " score: " + player1score
     document.getElementById('secondplayer').innerText = checkplayer2empty + " score: " + player2score
+
   }
 
   // the below function will clear the board
   function clearboard() {
-    state = 'X'
     document.getElementById('roundwinner').innerText = "The Gamer Winner is : "
+
+    state = 'X'
 
     case1 = document.getElementById("case1").innerText = "";
     case2 = document.getElementById("case2").innerText = "";
@@ -45,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
     case7 = document.getElementById("case7").innerText = "";
     case8 = document.getElementById("case8").innerText = "";
     case9 = document.getElementById("case9").innerText = "";
+
   }
 
 
@@ -114,14 +118,12 @@ document.addEventListener("DOMContentLoaded", function () {
       if (state == 'X') {
         strikeanimation(case1, case2, case3, case4, case5, case6, case7, case8, case9);
         document.getElementById('roundwinner').innerText = "The Gamer Winner is : " + player1
-
         setTimeout(function () {
 
           clearboard();
         }, 2000);
         setTimeout(function () {
 
-          alert(player1 + " Is The Winner!")
         }, 500);
 
         player1score += 1
@@ -137,7 +139,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 2000);
         setTimeout(function () {
 
-          alert(player2 + " Is The Winner!")
         }, 500);
 
 
@@ -177,6 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
   state = 'X'
   player1score = 0
   player2score = 0
+
   startgame()
 
 
