@@ -99,3 +99,30 @@ input[type=text] {
   align-items: center;
   justify-content: center;
 }
+
+.case {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  font-weight: bold;
+  color: white;
+}
+
+.case::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: red;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.case.strike-active::after {
+  transform: scaleX(1);
+}

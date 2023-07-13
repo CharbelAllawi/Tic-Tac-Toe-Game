@@ -1,4 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
+  function strikeDiv(divId) {
+    var div = document.getElementById(divId);
+    div.classList.add("strike-active");
+    setTimeout(function () {
+      div.classList.remove("strike-active");
+    }, 2000);
+  }
 
   function showboard() {
     var checkplayer1empty = document.forms["form1"]["player1input"].value;
@@ -44,7 +51,43 @@ document.addEventListener("DOMContentLoaded", function () {
     case9 = document.getElementById("case9").innerText = "";
   }
 
-
+  function strikeanimation(case1, case2, case3, case4, case5, case6, case7, case8, case9) {
+    if (case1 == case2 && case2 == case3 && case1 != "") {
+      strikeDiv("case1");
+      strikeDiv("case2");
+      strikeDiv("case3");
+    }
+    if (case4 == case5 && case5 == case6 && case4 != "") {
+      strikeDiv("case4");
+      strikeDiv("case5");
+      strikeDiv("case6");
+    }
+    if (case1 == case5 && case5 == case9 && case1 != "") {
+      strikeDiv("case1");
+      strikeDiv("case5");
+      strikeDiv("case9");
+    }
+    if (case3 == case5 && case5 == case7 && case3 != "") {
+      strikeDiv("case3");
+      strikeDiv("case5");
+      strikeDiv("case7");
+    }
+    if (case1 == case4 && case4 == case7 && case1 != "") {
+      strikeDiv("case1");
+      strikeDiv("case4");
+      strikeDiv("case7");
+    }
+    if (case2 == case5 && case5 == case8 && case2 != "") {
+      strikeDiv("case2");
+      strikeDiv("case5");
+      strikeDiv("case8");
+    }
+    if (case3 == case6 && case6 == case9 && case3 != "") {
+      strikeDiv("case3");
+      strikeDiv("case6");
+      strikeDiv("case9");
+    }
+  }
   function checkwin() {
 
     var player1 = document.forms["form1"]["player1input"].value;
@@ -69,15 +112,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     ) {
 
+
+
       if (state == 'X') {
-        alert(player1 + ' is the Winner!')
-        clearboard();
+
+        strikeanimation(case1, case2, case3, case4, case5, case6, case7, case8, case9);
+
+        setTimeout(function () {
+          clearboard();
+        }, 2000);
+
+
         player1score += 1
         showboard()
 
       }
       if (state == 'O') {
-        alert(player2 + ' is the Winner!')
+        strikeanimation(case1, case2, case3, case4, case5, case6, case7, case8, case9);
         clearboard();
         player2score += 1
         showboard()
@@ -92,31 +143,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
   }
 
+
+  function startgame() {
+
+
+    for (var i = 0; i < elements.length; i++) {
+      (function (index) {
+        elements[index].addEventListener('click', function () {
+
+          if (state == "X") {
+
+            elements[index].innerText = "X";
+            checkwin()
+            state = "O"
+
+          }
+          else if (state == "O") {
+
+            elements[index].innerText = "O";
+            checkwin()
+            state = "X"
+
+          }
+        });
+      })(i);
+    }
+  }
+
   state = 'X'
   player1score = 0
   player2score = 0
+  startgame()
 
-  for (var i = 0; i < elements.length; i++) {
-    (function (index) {
-      elements[index].addEventListener('click', function () {
 
-        if (state == "X") {
-
-          elements[index].innerText = "X";
-          checkwin()
-          state = "O"
-
-        }
-        else if (state == "O") {
-
-          elements[index].innerText = "O";
-          checkwin()
-          state = "X"
-
-        }
-      });
-    })(i);
-  }
 
 
 });
