@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
+
+  // this function will add strike to the div element
   function strikeDiv(divId) {
     var div = document.getElementById(divId);
     div.classList.add("strike-active");
@@ -7,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 2000);
   }
 
+  // the below function will display the hidden board  
   function showboard() {
     var checkplayer1empty = document.forms["form1"]["player1input"].value;
     var checkplayer2empty = document.forms["form1"]["player2input"].value;
@@ -26,18 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     document.getElementById('firstplayer').innerText = checkplayer1empty + " score: " + player1score
     document.getElementById('secondplayer').innerText = checkplayer2empty + " score: " + player2score
-
-
-
   }
 
-
-
-
-  document.getElementById("btn").addEventListener('click', showboard);
-  var elements = document.getElementsByClassName('case');
-
-
+  // the below function will clear the board
   function clearboard() {
     state = 'X'
     case1 = document.getElementById("case1").innerText = "";
@@ -51,6 +45,8 @@ document.addEventListener("DOMContentLoaded", function () {
     case9 = document.getElementById("case9").innerText = "";
   }
 
+
+  // the below function will add the strike animation
   function strikeanimation(case1, case2, case3, case4, case5, case6, case7, case8, case9) {
     if (case1 == case2 && case2 == case3 && case1 != "") {
       strikeDiv("case1");
@@ -88,6 +84,9 @@ document.addEventListener("DOMContentLoaded", function () {
       strikeDiv("case9");
     }
   }
+
+
+  // the below function will check for a potential winners
   function checkwin() {
 
     var player1 = document.forms["form1"]["player1input"].value;
@@ -109,67 +108,65 @@ document.addEventListener("DOMContentLoaded", function () {
       case1 == case4 && case4 == case7 && case1 != "" ||
       case2 == case5 && case5 == case8 && case2 != "" ||
       case3 == case6 && case6 == case9 && case3 != ""
-
     ) {
-
-
-
       if (state == 'X') {
-
         strikeanimation(case1, case2, case3, case4, case5, case6, case7, case8, case9);
-
         setTimeout(function () {
+
           clearboard();
         }, 2000);
+        setTimeout(function () {
 
+          alert(player1 + " Is The Winner!")
+        }, 500);
 
         player1score += 1
         showboard()
-
       }
       if (state == 'O') {
         strikeanimation(case1, case2, case3, case4, case5, case6, case7, case8, case9);
-        clearboard();
+        setTimeout(function () {
+
+          clearboard();
+        }, 2000);
+        setTimeout(function () {
+
+          alert(player2 + " Is The Winner!")
+        }, 500);
+
         player2score += 1
         showboard()
       }
-
-
     }
     if (case1 != "" && case2 != "" && case3 != "" && case4 != "" && case5 != "" && case6 != "" && case7 != "" && case8 != "" && case9 != "") {
       alert("Draw! No Winners ;)")
       clearboard()
     }
-
   }
 
-
+  // the below function will start the game
   function startgame() {
-
-
     for (var i = 0; i < elements.length; i++) {
       (function (index) {
         elements[index].addEventListener('click', function () {
-
           if (state == "X") {
-
             elements[index].innerText = "X";
             checkwin()
             state = "O"
-
           }
           else if (state == "O") {
-
             elements[index].innerText = "O";
             checkwin()
             state = "X"
-
           }
         });
       })(i);
     }
   }
 
+
+  document.getElementById("btn").addEventListener('click', showboard);
+  var elements = document.getElementsByClassName('case');
   state = 'X'
   player1score = 0
   player2score = 0
